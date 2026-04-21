@@ -1,0 +1,54 @@
+version: "0.1.0"
+namespace: "onto.protocol.core"
+
+# ----------------------------------------------------------------
+# CORE ENTITIES
+# ----------------------------------------------------------------
+entities:
+  - name: "Intent"
+    description: "The semantic goal of the user action."
+    attributes:
+      - id: "uuid"
+      - timestamp: "iso8601"
+      - priority: ["low", "normal", "high", "critical"]
+
+  - name: "Policy"
+    description: "A rule or constraint applied to an execution."
+    attributes:
+      - rule_id: "string"
+      - type: ["security", "ethical", "financial", "operational"]
+      - action_on_violation: ["block", "log", "alert"]
+
+  - name: "Task"
+    description: "A single unit of work assigned to an agent."
+    attributes:
+      - provider: "string" # e.g., OpenAI, Anthropic, LocalLlama
+      - status: ["pending", "running", "completed", "failed"]
+
+# ----------------------------------------------------------------
+# RELATIONS (How entities interact)
+# ----------------------------------------------------------------
+relations:
+  - subject: "Intent"
+    predicate: "governed_by"
+    object: "Policy"
+
+  - subject: "Task"
+    predicate: "generates"
+    object: "Trace"
+
+  - subject: "Policy"
+    predicate: "triggers_incident_on"
+    object: "Violation"
+
+# ----------------------------------------------------------------
+# INCIDENT TYPES (Post-April 20 focus)
+# ----------------------------------------------------------------
+incidents:
+  - code: "ERR_PROVIDER_OUTAGE"
+    severity: "critical"
+    description: "External AI provider is unreachable (e.g., April 20 scenario)."
+  
+  - code: "ERR_POLICY_VIOLATION"
+    severity: "high"
+    description: "Agent attempted an action forbidden by active policies."
