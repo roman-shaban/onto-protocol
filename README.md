@@ -1,6 +1,6 @@
 # Onto Protocol 💎
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.XXXXXXXX.svg)](https://zenodo.org/badge/latestdoi/XXXXXXXX)
+[![DOI](https://zenodo.org/badge/1217143082.svg)](https://doi.org/10.5281/zenodo.19713190)
 
 **Onto Protocol** is a standardized semantic layer designed to bridge the gap between human intent and autonomous AI execution. It provides a formal language for defining tasks, policies, and agent interactions.
 
